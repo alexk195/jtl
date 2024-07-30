@@ -1,0 +1,13 @@
+myproject
+{
+    mytemplate
+    {
+        folder("example1")
+        template("example1.jtl")
+        defs
+        {
+            def("example1.def")
+        }
+    }
+}
+
