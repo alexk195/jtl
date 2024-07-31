@@ -183,8 +183,7 @@ public class JTLTemplate {
     protected void close() throws IOException {
         if (ctx.twriter != null) {
             ctx.twriter.close();
-			JTLOut.out.print("             ");
-            JTLOut.out.print("Skipped Lines in manual code:");
+            JTLOut.out.print("JTLTemplate: Skipped Lines in manual code:");
             JTLOut.out.println(ctx.skippedLines);
             ctx.twriter = null;
         }
@@ -197,10 +196,10 @@ public class JTLTemplate {
 
     /// will be called by subclass templates main method
     public static void _run(String args[], JTLTemplate t, String templateName) {
-		JTLOut.err.println("Run template "+templateName);
+		//JTLOut.out.println("Run template "+templateName);
         if (args.length >= 1) {
             for (String defname : args) {
-				JTLOut.err.println("Definition file "+defname);
+				//JTLOut.out.println("Definition file "+defname);
                 JTLDefinitionParser defparser;
                 JTLContext ctx = t.ctx();
                 try {

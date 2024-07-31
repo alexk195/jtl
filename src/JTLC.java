@@ -18,8 +18,10 @@ public class JTLC {
     boolean lastCheckOK;
     boolean inCodeBlock;
     String classFileTemplate;
+    String jtlHeaderFileName;
     String javaTemplateFile;
     PrintStream pout;
+    public boolean verbose;
 
     // Escape sequences
     static final String CS_B = "@<"; // code section start
@@ -37,6 +39,17 @@ public class JTLC {
     public JTLC(String tname) {
         this.tname = tname;
 
+    }
+
+    void log(String s)
+    {
+        if (verbose)
+            JTLOut.out.println(s);
+    }
+
+    void err(String s)
+    {
+        JTLOut.err.println(s);
     }
 
     public String getJavaTemplateFile()
@@ -64,16 +77,16 @@ public class JTLC {
 
         RandomAccessFile headerReader;
         try {
-            headerReader = new RandomAccessFile(classFileTemplate + ".jtl_header", "r");
+            headerReader = new RandomAccessFile(jtlHeaderFileName, "r");
             String line = headerReader.readLine();
             while (line != null) {
                 tout(line);
                 line = headerReader.readLine();
             }
         } catch (FileNotFoundException e) {
-            JTLOut.out.println("No jtl_header file found. Proceed with default header");
+            log("No jtl_header file found. Proceed with default header");
         } catch (IOException e) {
-            JTLOut.out.println(e.getLocalizedMessage());
+            err(e.getLocalizedMessage());
             e.printStackTrace(JTLOut.err);
         }
 
@@ -85,8 +98,8 @@ public class JTLC {
         tout("  public " + classFileTemplate + "(JTLContext ctxIn) { ctx(ctxIn); }");
         tout("  @Override");
         tout("  protected void process(Object object)  throws Exception {");
-        tout("  JTLEntity entity=null; if ( object instanceof JTLEntity) entity=(JTLEntity)object;");
-        tout("  JTLEntity root=entity;");
+        tout("  JTLEntity entity=null;");
+        tout("  if ( object instanceof JTLEntity) entity = (JTLEntity)object;");
         tout("  // Code from jtl file follows");
     }
 
@@ -219,7 +232,7 @@ public class JTLC {
 
     /// Process a jtl template file line by line. TemplateReader was already setup to read the jtl file
     protected void processTemplate() {
-        JTLOut.out.println("Generating java file: " + javaTemplateFile);
+        log("Generating java file: " + javaTemplateFile);
 
         linenr = 0;
         printTemplateHeader();
@@ -240,23 +253,24 @@ public class JTLC {
             JTLOut.err.print("Template Line ");
             JTLOut.err.print(linenr);
             if (line != null) {
-                JTLOut.out.println(": " + line.trim());
+                JTLOut.err.println(": " + line.trim());
             }
             JTLOut.err.println(e.getMessage());
             e.printStackTrace(JTLOut.err);
         }
         printTemplateFooter();
-        JTLOut.out.println("Succesfully generated java file: " + javaTemplateFile);
-        JTLOut.out.println("Compile it and run with your definition file");
+        log("Succesfully generated java file: " + javaTemplateFile);
+        log("Compile it and run with your definition file");
     }
 
     /// Runs the JTLC compiler for jtl file provided in tname
     /// Creates file readers and writers, setup of class names, etc
     public void run() {
-        JTLOut.out.println("JTL file: " + tname);
+        log("JTL file: " + tname);
 
         try {
             File file = new File(tname);
+            jtlHeaderFileName = tname.replace(".jtl", ".jtl_header");
             templateReader = new RandomAccessFile(tname, "r");
             classFileTemplate = file.getName().replace(".jtl", "");
             javaTemplateFile = file.getAbsolutePath().replace(".jtl", ".java"); 
@@ -264,9 +278,9 @@ public class JTLC {
             processTemplate();
             pout.close();
         } catch (FileNotFoundException e) {
-            JTLOut.out.println(e.getLocalizedMessage());
+            JTLOut.err.println(e.getLocalizedMessage());
         } catch (UnsupportedEncodingException e) {
-            JTLOut.out.println(e.getLocalizedMessage());
+            JTLOut.err.println(e.getLocalizedMessage());
             e.printStackTrace(JTLOut.err);
         }
 

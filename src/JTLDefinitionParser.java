@@ -27,7 +27,8 @@ public class JTLDefinitionParser {
     boolean jsonMode = false;
     boolean csvMode = false;
     boolean defMode = false;
-    
+    public boolean verbose = false;
+
     public static final char PARAM_BEGIN = '(';
     public static final char PARAM_END = ')';
     public static final char PARAM_SEPAR = ',';
@@ -44,7 +45,7 @@ public class JTLDefinitionParser {
 
     public static final char CSV_DELIM = ';';
     public static final String CSV_ELEM_NAME = "_elem_";
-    
+
     // parse current entity in e
     // current token is the entity name
     protected void parseParams(JTLEntity e) throws Exception {
@@ -63,6 +64,12 @@ public class JTLDefinitionParser {
             }
         }
         tokenizer.nextToken();
+    }
+
+    void log(String s)
+    {
+        if (verbose)
+            JTLOut.out.println(s);
     }
 
     protected void parseBlock(JTLEntity e) throws Exception {
@@ -306,21 +313,23 @@ public class JTLDefinitionParser {
         isr = new InputStreamReader(fis, "UTF8");
         tokenizer = new StreamTokenizer(isr);
         tokenizer.resetSyntax();
-		JTLOut.out.print("Definition file format: ");
+        String format = "";
+
         if (filename.endsWith(".def")||filename.endsWith(".jtlp")) {
-			JTLOut.out.println(" DEF");
+            format = "DEF";
             parseDefFormat();
         } else if (filename.endsWith(".json")) {
-			JTLOut.out.println(" JSON");
+			format = "JSON";
             parseJsonFormat();
         } else if (filename.endsWith(".csv")){
-			JTLOut.out.println(" CSV");
+			format = "CSV";
             parseCsvFormat();
         }
 		else
 		{
 			 throw new Exception("Definition format not identified");
 		}
+        log("Definition file format: "+format);
     }
 
     public static void main(String[] args) throws Exception {

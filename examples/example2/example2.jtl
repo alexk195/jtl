@@ -1,0 +1,26 @@
+@<
+JTLEntity prompts = entity.child("example2").child("prompts");
+prompts.dump(); // just dump the contents
+file("main.cpp"); // create a file for output
+@>
+// compile with "g++ main.cpp -o example2"
+#include <iostream>
+int main(int argc, char**argv) {
+	// define variables
+@for (JTLEntity e:prompts.children) {
+	@[e.param(0)]@ @[e.name]@;
+@}
+	// set from std::cin
+@for (JTLEntity e:prompts.children) {
+	std::cout << "Type in @[e.name]@ :";
+	std::cin  >> @[e.name]@;
+@}
+	// print them
+	std::cout << "Your data:" << std::endl;
+
+@for (JTLEntity e:prompts.children) {
+	std::cout << "@[e.name]@:" << @[e.name]@ << std::endl;
+@}
+	return 0;
+}
+@close();

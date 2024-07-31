@@ -134,17 +134,20 @@ public class JTLEntity extends Object {
         return name;
     }
 
+    ///@ adds child to entity
     public JTLEntity addChild(JTLEntity e) {
         children.addElement(e);
         e.parent = this;
         return this;
     }
 
+    ///@ adds parameter to entity
     public JTLEntity addParam(String p) {
         params.addElement(p);
         return this;
     }
 
+    ///@ sets parameter by index
     public JTLEntity setParam(int i, String p) throws Exception {
 
         if (i < params.size()) {
@@ -158,7 +161,7 @@ public class JTLEntity extends Object {
         return this;
     }
 
-    /// dump recursive for debugging
+    /// dump recursive for debugging with provided depth (=indentation)
     public void dump(int depth) {
 
         String sparams = "";
@@ -183,7 +186,13 @@ public class JTLEntity extends Object {
 
     }
 
-    /// dumps in xml format
+    /// dumps definition in def format
+    public void dump()
+    {
+        dump(0);
+    }
+
+    /// dumps in xml format with provided depth (=indentation)
     public void dumpXML(int depth) {
         String sparams = "";
         for (int i = 0; i < params.size(); i++) {
@@ -210,8 +219,13 @@ public class JTLEntity extends Object {
 
     }
 
-    // Internal methods follows
-    // 
+    /// dumps definitionin XML format
+    public void dumpXML()
+    {
+        dumpXML(0);
+    }
+
+    /// prints something shifted
     private void printshifted(String what, int depth) {
         for (int i = 0; i < depth * 2; i++) {
             JTLOut.out.print(" ");

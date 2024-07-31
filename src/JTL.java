@@ -49,6 +49,8 @@ public class JTL {
     Path projectFilePath;
     Path projectFolderPath;
     private boolean verbose = false;
+    private boolean skipCompile = false;
+    private boolean skipGenerate = false;
     private boolean onWindows = false;
     void log(String s)
     {
@@ -107,7 +109,7 @@ public class JTL {
         try {
             fileManager.close();
         } catch (IOException e) {
-            e.printStackTrace();
+            e.printStackTrace(JTLOut.err);
         }
 
         // Output the result
@@ -214,47 +216,60 @@ public class JTL {
             Path normalized_templ_path = templ_path.normalize().toAbsolutePath();
             String abs_templ_path = normalized_templ_path.toString();
             log("Template full path:" + abs_templ_path);
-            JTLC jtlc = new JTLC(abs_templ_path);
-            jtlc.run();
-            log("Template Java file:" + jtlc.getJavaTemplateFile());
-
             Path localFolder = projectFolderPath.resolve(folder);
-            compileTemplate(localFolder, jtlc.getJavaTemplateFile());
 
-            if (template.hasChild("defs")) {
-                ArrayList<String> definitionFiles = new ArrayList<>();
+            if (!skipCompile) {
+                JTLC jtlc = new JTLC(abs_templ_path);
+                jtlc.verbose = verbose;
+                jtlc.run();
+                log("Template Java file:" + jtlc.getJavaTemplateFile());
+                compileTemplate(localFolder, jtlc.getJavaTemplateFile());
+            }
 
-                for (JTLEntity def_file : template.child("defs").children) {
-                    Path defFilePath = localFolder.resolve(def_file.param(0));
-                    definitionFiles.add(defFilePath.toAbsolutePath().toString());
+            if (!skipGenerate) {
+                if (template.hasChild("defs")) {
+                    ArrayList<String> definitionFiles = new ArrayList<>();
+
+                    for (JTLEntity def_file : template.child("defs").children) {
+                        Path defFilePath = localFolder.resolve(def_file.param(0));
+                        definitionFiles.add(defFilePath.toAbsolutePath().toString());
+                    }
+
+                    String className = abs_templ_path.replace(".jtl", "");
+                    executeTemplate(localFolder, className, definitionFiles.toArray(new String[0]));
                 }
-
-                Path templClassPath = templ_path.resolve(jtlc.getJavaTemplateFile());
-                String className = templClassPath.toAbsolutePath().toString().replace(".java", "");
-                executeTemplate(localFolder, className, definitionFiles.toArray(new String[0]));
             }
         }
     }
 
     public static void main(String[] args) throws Exception {
         boolean verbose = false;
+        boolean skipCompile = false;
+        boolean skipGenerate = false;
+
         ArrayList<String> fileparams = new ArrayList<>();
         if (args.length == 0) {
             JTLOut.out.println("JTL Version "+JTLContext.majorVersion+"."+JTLContext.minorVersion);
-            JTLOut.out.println("Usage: JTL [--verbose] <project file 1> <project file 2>");
+            JTLOut.out.println("Usage: JTL [--verbose] [--skip_compile] [--skip_generate] <project file 1> <project file 2>");
         } else {
 
             for (String arg : args) {
                 if (arg.equals("--verbose")) {
                     JTLOut.out.println("Verbose mode on");
                     verbose = true;
-                }
-                else {
+                } else if (arg.equals("--skip_compile")) {
+                    skipCompile = true;
+                } else if (arg.equals("--skip_generate")){
+                    skipGenerate = true;
+                } else {
                     fileparams.add(arg);
                 }
             }
 
             JTL jtl = new JTL(verbose);
+            jtl.skipCompile = skipCompile;
+            jtl.skipGenerate = skipGenerate;
+
             for (String projectFile: fileparams)
             {
                 jtl.run(projectFile);

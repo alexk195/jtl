@@ -1,0 +1,24 @@
+@ file("example4_out.txt");
+Example 4:
+@ manual_begin("edit-by-hand");
+@ manual_end();
+@ manual_begin(entity);
+@ manual_end();
+@ String tmp = manual_prefix();
+@ manual_prefix("//--myprefix--");
+@ manual_begin("edit-by-hand2");
+@ manual_end();
+@ manual_prefix(tmp);
+@ manual_begin("edit-by-hand3");
+@ manual_end();
+@ manual_patterns("// MANUAL START @id@","// MANUAL END @id@");
+@ manual_begin("myid");
+@ manual_end();
+@ manual_patterns_default();
+@ manual_begin("myid2");
+@ manual_end();
+Here is some text with newline\n in between
+Here is some text without newline in between
+End of file
+@ close();
+

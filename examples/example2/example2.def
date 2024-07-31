@@ -1,0 +1,10 @@
+examples
+{
+	example2
+	{
+		prompts {
+			Name(std::string)
+			Age(int)
+		}
+	}
+}

@@ -1,12 +1,44 @@
 myproject
 {
-    mytemplate
+    my_example_1
     {
-        folder("example1")
-        template("example1.jtl")
+        folder("example1") // folder is mandatory
+        template("example1.jtl") // template is mandatory
+        // put all definitions under "defs". If defs is not there, templates are not processed
         defs
         {
             def("example1.def")
+        }
+    }
+	
+	my_example_2
+	{
+		folder(example2)
+		template(example2.jtl)
+		defs
+		{
+			def(example2.def)
+		}
+	}
+	
+	my_example3
+	{
+		folder(example3)
+		template(example3.jtl)
+		defs
+		{
+			def(test.csv)
+			def(test.json)
+		}
+	}
+
+    my_example4
+    {
+        folder(example4)
+        template(example4.jtl)
+        defs
+        {
+            def(example4.def)
         }
     }
 }

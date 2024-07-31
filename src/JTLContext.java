@@ -10,10 +10,10 @@ import java.text.*;
 public class JTLContext {
 
 	/// Tool version major number
-	public static final int majorVersion = 2;
+	public static final int majorVersion = 3;
 	
 	/// Tool version minor number
-	public static final int minorVersion = 15;
+	public static final int minorVersion = 1;
 	
     /// Writer object which will be used for output. If its null the standard
     /// output will be used
