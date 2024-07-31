@@ -46,7 +46,7 @@ public class JTLEntity extends Object {
     }
 
     ///@ returns true if child exists
-    boolean hasChild(String sname) {
+    public boolean hasChild(String sname) {
         return child(sname) != null;
     }
 

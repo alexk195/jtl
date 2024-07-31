@@ -1,4 +1,6 @@
 @<
+if (!entity.hasChild("example2"))
+    error("Bad definition file");
 JTLEntity prompts = entity.child("example2").child("prompts");
 prompts.dump(); // just dump the contents
 file("main.cpp"); // create a file for output
