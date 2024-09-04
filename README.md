@@ -64,7 +64,7 @@ See Example2 for details.
 
 ### Manual sections
 A very useful and powerful method for code generation framework is possibility to update portions of the file which is kept during the generation rounds. 
-For example implementing generated stubs for method calls or similar. For this reason two methods are available: “*manual_start()*” and “*manual_end()*”. 
+For example implementing generated stubs for method calls or similar. For this reason two methods are available: “*manual_begin()*” and “*manual_end()*”. 
 Everything between them is preserved during subsequent generation runs.
 See Example4 for details.
 
