@@ -192,10 +192,9 @@ This file will be copied into intermediate java file during template processing.
 See `examples/example4.jtl` for details. The additional header file is called `example4.jtl_header`
 
 ### Extended usage
-Look into files `JTLEntity.java` and `JTLTemplate.java`.
 Your templates will be derived from `JTLTemplate`, so all methods of `JTLTemplate` are directly usable in control code.
 The definitions are parsed into `JTLEntity` instance, so everything related to access definition data is implemented in `JTLEntity`. 
-
+For more information see files `src/JTLEntity.java` and `src/JTLTemplate.java`.
 
 ## License
 MIT License, see LICENSE file 
