@@ -23,9 +23,9 @@ flowchart TD
 2. You will require build/JTL.jar and jtl.bat or jtl.sh 
 
 ## Usage
-1. Write a template file (see example1.jtl in examples/example1)
-2. Write a definition file (see example1.def in examples/example1)
-3. Write a project file (see project_1.jtlp in examples)
+1. Write a template file (see examples/example1/example1.jtl)
+2. Write a definition file (see examples/example1/example1.def)
+3. Write a project file (see examples/project_1.jtlp)
 4. Execute jtl.sh or jtl.bat and provide project file as parameter
 
 ## Examples
