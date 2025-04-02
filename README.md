@@ -157,16 +157,23 @@ Hello World
 Hello JTL Users
 ```
 ### Control code and Expressions
-The “@” character is used for escaping into control code section. 
+There are three escape sequences used for controlling template processing. All of them use "@" character.
+If your JTL code starts, you will have the parameter `entity` of type `JTLEntity` already available and pointing to parsed content of definition.
+The control code types are described in following chapters.
+#### Single line control code
+The “@” character in jtl file is used for escaping into control code section. 
 Put this character at the beginning of a line and this line will be control code. 
 Control code can be arbitrary Java code which you are allowed to use inside a method.
-If your JTL code starts, you will have the entity of type JTLEntity already available and pointing to parsed content of definition.
+In the example1 above it is used to define the `for` loop.
+#### Inline replacement
 The second escape sequence is used for replacing parts by using string expressions from control code. 
-This escape sequence is "@\[" for opening and “]@” for closing.
+This escape sequence is "@\[" for opening and "]@" for closing.
+In the example1 above it is used to replace @[e.param(0)]@ with the first param of child in the `def` file.
 
-The third sequence is used for larger control code blocks. It’s started by “@<” and closed with “@>” everything in between of this sequences is interpreted as Java code. 
-
-You can see this in Example2.
+#### Multiline control code
+The third sequence is used for larger control code blocks. It’s started by "@<" and closed with "@>". Everything in between of this sequences is interpreted as Java code. 
+This can be used instead of prepending every line with "@"
+You can see this in `examples/example2.jtl`.
 
 ### File creation
 In most cases we want to write our output to a certain file. For example if we generate C++ code we would write cpp and h files.  Even if piping out console output to a file is an option we should definitely avoid this and use methods provided by JTL.
