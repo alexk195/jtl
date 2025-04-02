@@ -196,7 +196,7 @@ Your templates will be derived from `JTLTemplate`, so all methods of `JTLTemplat
 The definitions are parsed into `JTLEntity` instance, so everything related to access definition data is implemented in `JTLEntity`. 
 For more information see files [JTLEntity.java](https://github.com/alexk195/jtl/blob/main/src/JTLEntity.java) and [JTLTemplate.java](https://github.com/alexk195/jtl/blob/main/src/JTLTemplate.java)).
 
-### Public methods of JTLTemplate
+#### Public methods of JTLTemplate
 Here are all the public methods of JTLTemplate.java in a table:
 
 | Method Signature | Description |
@@ -227,7 +227,7 @@ Here are all the public methods of JTLTemplate.java in a table:
 | `public void enable_backup()` | Enables backup file creation for the currently opened file. |
 | `public static void _run(String args[], JTLTemplate t, String templateName)` | Entry method for template generation, overridden in all templates. |
 
-### Public methods of JTLEntity
+#### Public methods of JTLEntity
 Here are all the public methods of JTLEntity in a table:
 
 | Method Signature | Description |
