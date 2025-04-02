@@ -194,7 +194,7 @@ See `examples/example4.jtl` for details. The additional header file is called `e
 ### Extended usage
 Your templates will be derived from `JTLTemplate`, so all methods of `JTLTemplate` are directly usable in control code.
 The definitions are parsed into `JTLEntity` instance, so everything related to access definition data is implemented in `JTLEntity`. 
-For more information see files [JTLEntity.java](src/JTLEntity.java) and [JTLTemplate.java](src/JTLTemplate.java).
+For more information see files [JTLEntity.java](https://github.com/alexk195/jtl/blob/main/src/JTLEntity.java) and [JTLTemplate.java](https://github.com/alexk195/jtl/blob/main/src/JTLTemplate.java)).
 
 ## License
 MIT License, see LICENSE file 
