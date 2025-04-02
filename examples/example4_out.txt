@@ -1,0 +1,17 @@
+Example 4:
+//--jtl--edit-by-hand--begin--*
+Test
+//--jtl--edit-by-hand--end--*
+//--jtl----begin--*
+//--jtl----end--*
+//--myprefix--edit-by-hand2--begin--*
+//--myprefix--edit-by-hand2--end--*
+//--jtl--edit-by-hand3--begin--*
+//--jtl--edit-by-hand3--end--*
+// MANUAL START myid
+// MANUAL END myid
+//--jtl--myid2--begin--*
+//--jtl--myid2--end--*
+Here is some text with newline\n in between
+Here is some text without newline in between
+End of file
