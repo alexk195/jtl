@@ -240,10 +240,10 @@ Here are all the public methods of JTLEntity in a table:
 | `public String param(int nr) throws Exception` | Returns param by index. |
 | `public boolean isLast()` | Returns true if this child is last one. |
 | `public boolean isFirst()` | Returns true if this child is first one. |
-| `public Character ifLast(Character *then, Character *else)` | Returns *then character if entity is last child, *else otherwise. |
-| `public String ifLast(String *then, String *else)` | Returns *then String if entity is last child, *else otherwise. |
-| `public Character ifFirst(Character *then, Character *else)` | Returns *then character if entity is first child, *else otherwise. |
-| `public String ifFirst(String *then, String *else)` | Returns *then String if entity is first child, *else otherwise. |
+| `public Character ifLast(Character c_then, Character c_else)` | Returns c_then character if entity is last child, c_else otherwise. |
+| `public String ifLast(String c_then, String c_else)` | Returns c_then String if entity is last child, c_else otherwise. |
+| `public Character ifFirst(Character c_then, Character c_else)` | Returns c_then character if entity is first child, c_else otherwise. |
+| `public String ifFirst(String c_then, String c_else)` | Returns c_then String if entity is first child, c_else otherwise. |
 | `public String toString()` | Returns the name of the entity. |
 | `public JTLEntity addChild(JTLEntity e)` | Adds child to entity. |
 | `public JTLEntity addParam(String p)` | Adds parameter to entity. |
