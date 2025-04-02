@@ -159,7 +159,7 @@ Hello JTL Users
 ### Control code and Expressions
 There are three escape sequences used for controlling template processing. All of them use "@" character.
 If your JTL code starts, you will have the parameter `entity` of type `JTLEntity` already available and pointing to parsed content of definition.
-The control code types are described in following chapters.
+The control code types are described in following chapters. Control code is regular Java code which is injected into template processing.
 #### Single line control code
 The “@” character in jtl file is used for escaping into control code section. 
 Put this character at the beginning of a line and this line will be control code. 
@@ -176,25 +176,26 @@ This can be used instead of prepending every line with "@"
 You can see this in `examples/example2.jtl`.
 
 ### File creation
-In most cases we want to write our output to a certain file. For example if we generate C++ code we would write cpp and h files.  Even if piping out console output to a file is an option we should definitely avoid this and use methods provided by JTL.
-This is done by methods "*file()*" and "*close()*"
-See Example2 for details.
+In most cases we want to write our output to a certain file. For example if we generate C++ code we would write cpp and h files. Even if piping out console output to a file is an option we should definitely avoid this and use methods provided by JTL.
+This is done by methods "*file()*" and "*close()*" inside a control block. 
+See `examples/example2.jtl` for details.
 
 ### Manual sections
 A very useful and powerful method for code generation framework is possibility to update portions of the file which is kept during the generation rounds. 
-For example implementing generated stubs for method calls or similar. For this reason two methods are available: “*manual_begin()*” and “*manual_end()*”. 
+For example implementing generated stubs for method calls or similar. For this reason two methods are available: "*manual_begin()*" and "*manual_end()*". 
 Everything between them is preserved during subsequent generation runs.
-See Example4 for details.
+See `examples/example4.jtl` for details.
 
 ### JTL header file
-In order to include own import or external imports You need to create additional file with file extension “jtl_header”.
+In order to include own import or external imports You need to create additional file with file extension `jtl_header`.
 This file will be copied into intermediate java file during template processing. Put your import declarations in this file.
-See Example4 files in example folder for example of usage. The file is called example4.jtl_header
+See `examples/example4.jtl` for details. The additional header file is called `example4.jtl_header`
 
 ### Extended usage
-Look into files JTLEntity.java and JTLTemplate.java.
-Your templates will be derived from JTLTemplate, so all methods in control code are methods of JTLTemplate.
-The definitions are parsed into JTLEntity instance, so everything related to access definition data is implemented in JTLEntity. 
+Look into files `JTLEntity.java` and `JTLTemplate.java`.
+Your templates will be derived from `JTLTemplate`, so all methods of `JTLTemplate` are directly usable in control code.
+The definitions are parsed into `JTLEntity` instance, so everything related to access definition data is implemented in `JTLEntity`. 
+
 
 ## License
 MIT License, see LICENSE file 
