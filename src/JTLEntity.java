@@ -93,39 +93,39 @@ public class JTLEntity extends Object {
         return parent.children.elementAt(0) == this;
     }
 
-    /// @ returns _then character if entity is last child, _else otherwise
-    public Character ifLast(Character _then, Character _else) {
+    /// @ returns c_then character if entity is last child, c_else otherwise
+    public Character ifLast(Character c_then, Character c_else) {
         if (isLast()) {
-            return _then;
+            return c_then;
         } else {
-            return _else;
+            return c_else;
         }
     }
 
-    /// @ returns _then String if entity is last child, _else otherwise
-    public String ifLast(String _then, String _else) {
+    /// @ returns c_then String if entity is last child, c_else otherwise
+    public String ifLast(String c_then, String c_else) {
         if (isLast()) {
-            return _then;
+            return c_then;
         } else {
-            return _else;
+            return c_else;
         }
     }
 
-    /// @ returns _then character if entity is first child, _else otherwise
-    public Character ifFirst(Character _then, Character _else) {
+    /// @ returns c_then character if entity is first child, c_else otherwise
+    public Character ifFirst(Character c_then, Character c_else) {
         if (isFirst()) {
-            return _then;
+            return c_then;
         } else {
-            return _else;
+            return c_else;
         }
     }
 
-    /// @ returns _then String if entity is first child, _else otherwise
-    public String ifFirst(String _then, String _else) {
+    /// @ returns c_then String if entity is first child, c_else otherwise
+    public String ifFirst(String c_then, String c_else) {
         if (isFirst()) {
-            return _then;
+            return c_then;
         } else {
-            return _else;
+            return c_else;
         }
     }
 
