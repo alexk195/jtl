@@ -196,5 +196,37 @@ Your templates will be derived from `JTLTemplate`, so all methods of `JTLTemplat
 The definitions are parsed into `JTLEntity` instance, so everything related to access definition data is implemented in `JTLEntity`. 
 For more information see files [JTLEntity.java](https://github.com/alexk195/jtl/blob/main/src/JTLEntity.java) and [JTLTemplate.java](https://github.com/alexk195/jtl/blob/main/src/JTLTemplate.java)).
 
+### Public methods of JTLTemplate
+Here are all the public methods of JTLTemplate.java in a table:
+
+| Method Signature | Description |
+|------------------|-------------|
+| `public void println(CharSequence c) throws IOException` | Prints a line to output. |
+| `public void println(Vector<String> vs) throws IOException` | Prints a vector of strings to output. |
+| `public void manual_begin(JTLEntity e) throws Exception` | Starts a manual code section with the given entity. |
+| `public void manual_begin(String id) throws Exception` | Starts a manual code section with the given id. |
+| `public void manual_start(JTLEntity e) throws Exception` | Deprecated. Starts a manual code section with the given entity. |
+| `public void manual_start(String id) throws Exception` | Deprecated. Starts a manual code section with the given id. |
+| `public void manual_end() throws Exception` | Ends a manual code section. |
+| `public void manual_patterns(String pbegin, String pend)` | Sets manual section patterns. |
+| `public void manual_patterns_default()` | Sets manual section patterns to default. |
+| `public void file(String filename) throws Exception` | Starts writing to a new file with the given filename. |
+| `public void folder(String foldername) throws Exception` | Creates a folder if not existent. |
+| `public Vector<String> load_file(String fname) throws Exception` | Reads a file and returns its contents as a vector of strings. |
+| `public String template()` | Returns the template file name. |
+| `public String definition()` | Returns the definition file name. |
+| `public void manual_prefix(String s)` | Sets the prefix string for manual code sections. |
+| `public String manual_prefix()` | Returns the prefix string for manual code sections. |
+| `public void manual_postfix(String s)` | Sets the postfix string for manual code sections. |
+| `public String manual_postfix()` | Returns the postfix string for manual code sections. |
+| `public String version()` | Returns the version as a string. |
+| `public final JTLContext ctx()` | Returns the context. |
+| `public final void ctx(JTLContext _ctx)` | Sets the context. |
+| `public void warning(String what)` | Prints an error message from inside the template. |
+| `public void disable_backup()` | Disables backup file creation for the currently opened file. |
+| `public void enable_backup()` | Enables backup file creation for the currently opened file. |
+| `public static void _run(String args[], JTLTemplate t, String templateName)` | Entry method for template generation, overridden in all templates. |
+
+
 ## License
 MIT License, see LICENSE file 
