@@ -227,6 +227,32 @@ Here are all the public methods of JTLTemplate.java in a table:
 | `public void enable_backup()` | Enables backup file creation for the currently opened file. |
 | `public static void _run(String args[], JTLTemplate t, String templateName)` | Entry method for template generation, overridden in all templates. |
 
+### Public methods of JTLEntity
+Here are all the public methods of JTLEntity in a table:
+
+| Method Signature | Description |
+|------------------|-------------|
+| `public JTLEntity()` | Constructor to initialize a JTLEntity object. |
+| `public JTLEntity child(String sname)` | Returns child by given name. |
+| `public boolean hasChild(String sname)` | Returns true if child exists. |
+| `public String fullpath()` | Returns full path of entity with "/" as delimiter. |
+| `public JTLEntity child(int nr) throws Exception` | Returns child by index. |
+| `public String param(int nr) throws Exception` | Returns param by index. |
+| `public boolean isLast()` | Returns true if this child is last one. |
+| `public boolean isFirst()` | Returns true if this child is first one. |
+| `public Character ifLast(Character *then, Character *else)` | Returns *then character if entity is last child, *else otherwise. |
+| `public String ifLast(String *then, String *else)` | Returns *then String if entity is last child, *else otherwise. |
+| `public Character ifFirst(Character *then, Character *else)` | Returns *then character if entity is first child, *else otherwise. |
+| `public String ifFirst(String *then, String *else)` | Returns *then String if entity is first child, *else otherwise. |
+| `public String toString()` | Returns the name of the entity. |
+| `public JTLEntity addChild(JTLEntity e)` | Adds child to entity. |
+| `public JTLEntity addParam(String p)` | Adds parameter to entity. |
+| `public JTLEntity setParam(int i, String p) throws Exception` | Sets parameter by index. |
+| `public void dump(int depth)` | Dumps the entity recursively for debugging with provided depth (=indentation). |
+| `public void dump()` | Dumps the definition in def format. |
+| `public void dumpXML(int depth)` | Dumps the entity in XML format with provided depth (=indentation). |
+| `public void dumpXML()` | Dumps the definition in XML format. |
+
 
 ## License
 MIT License, see LICENSE file 
